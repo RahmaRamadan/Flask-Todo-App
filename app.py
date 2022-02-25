@@ -13,12 +13,24 @@ class Todo(db.Model):
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
 
+# -------------------------home-----------------------------------
 @app.route('/')
 def index():
     #show all todos
     todo_list = Todo.query.all()
     print(todo_list)
     return render_template('base.html', todo_list = todo_list)
+
+# ---------------------------login------------------------------------
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+# -------------------------register-----------------------------------
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
 
 # -------------------------add-----------------------------------
 @app.route('/add', methods=["POST"])
