@@ -7,52 +7,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="static/login.css" />
 </head>
 
-<body style="background-color: #212121">
+<body>
     <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
+        <div class="container-fluid gradient-custom-2">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Todo App</a>
+                <a class="navbar-brand" href="#" style="color: #ffff">Todo App</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active" ><a href="#">Home</a></li>
+                <li><a href="#" style="color: #ffff">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Register </a>
+                    <a href="{{ url_for('register') }}" style="color: #ffff"><span
+                            class="glyphicon glyphicon-user"></span> Register </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                    <a href="{{ url_for('login') }}" style="color: #ffff"><span
+                            class="glyphicon glyphicon-log-in"></span> Login</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('logout') }}" style="color: #ffff"><span
+                            class="glyphicon glyphicon-log-out"></span> Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
     <form action="/add" method="post" class="form-group container">
         <div>
-            <label for="title" style="color: #AAAAAA">Todo Title</label>
+            <label for="title">Todo Title</label>
             <br />
             <input type="text" name="title" class="form-control" placeholder="Enter todo title" />
             <br />
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn gradient-custom-2" style="color: #ffff">Add</button>
         </div>
     </form>
     <br />
     {% for todo in todo_list %}
-        <div class="container border border-dark">
-            <h4 style="color: #AAAAAA">{{ todo.id }} | {{ todo.title }}</h4>
-            {% if todo.complete == False %}
-              <span class="btn btn-warning"> Not Complete</span>
-              <a href="/update/{{ todo.id }}" class="btn btn-primary"> Complete </a>
-            {% else %}
-              <span class="btn btn-success"> Completed </span>
-              <a href="/update/{{ todo.id }}" class="btn btn-primary"> Uncomplete </a>
-            {% endif %}
-              <a href="/delete/{{ todo.id }}" class="btn btn-danger"> Delete </a>
-        </div>
-        <hr/>
+    <div class="container border border-dark">
+        <h4>{{ todo.id }} | {{ todo.title }}</h4>
+        {% if todo.complete == False %}
+        <span class="btn btn-primary"> Not Complete</span>
+        <a href="/update/{{ todo.id }}" class="btn gradient-custom-2" style="color: #ffff"> Complete </a>
+        {% else %}
+        <span class="btn btn-success"> Completed </span>
+        <a href="/update/{{ todo.id }}" class="btn gradient-custom-2" style="color: #ffff"> Uncomplete </a>
+        {% endif %}
+        <a href="/delete/{{ todo.id }}" class="btn btn-danger"> Delete </a>
+    </div>
+    <hr />
     {% endfor %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>
